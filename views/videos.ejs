@@ -1,0 +1,33 @@
+<%- include('header') -%>
+
+  <body>
+    <main>
+      <h1>Fræðslumyndbandaleigan</h1>
+      <div class="list">
+        
+        <% categories.forEach((category) => { %>
+          <div class="category">
+            <h2><%= category.title %></h2>
+            <div class="category-items">
+              <% videos.forEach((video) => { %>
+                <% if (category.videos.includes(video.id)) { %>
+                  <div class="video-item">
+                    <div class="video-item-link">
+                      <a href="/<%= video.id %>">
+                        <img class="video-poster" src="<%= video.poster %>">
+                      </a>
+                      <p class="video-time"><%= locals.duration_formatter(video.duration) %></p>
+                    </div>
+                    <p class="video-title"><strong><%= video.title %></strong></p>
+                    <p class="video-created"><%= locals.time_formatter(video.created) %></p>
+                  </div>
+                <% } %>
+              <% }); %>
+            </div>
+            <hr>
+          </div>
+        <% }); %>
+      </div>
+    </main>
+  </body>
+</html>

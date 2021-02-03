@@ -1,0 +1,27 @@
+<%- include('header') -%>
+<div class="video-page">
+  <iframe class="video-player" src="<%= video.video %>"></iframe>
+
+  <p class="video-description"><%= video.description %></p>
+
+  <div class="category">
+    <h2>Tengd myndbönd</h2>
+    <div class="category-items">
+      <% related.forEach((v) => { %>
+
+      <div class="video-item">
+        <div class="video-item-link">
+          <a href="/<%= v.id %>">
+            <img class="recommended-img" src="<%= v.poster %>" />
+          </a>
+          <p class="video-time"><%= locals.duration_formatter(v.duration) %></p>
+        </div>
+        <p class="video-title"><strong><%= v.title %></strong></p>
+        <p class="video-created"><%= locals.time_formatter(v.created) %></p>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+  <hr>
+  <a class="back" href="/">Til baka</a>
+</div>
